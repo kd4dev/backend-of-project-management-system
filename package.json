@@ -1,0 +1,18 @@
+{
+  "name": "projmanagement",
+  "version": "1.0.0",
+  "description": "a project management application for beginners",
+  "keywords": [
+    "backend"
+  ],
+  "license": "ISC",
+  "author": "kedar baswade",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}
