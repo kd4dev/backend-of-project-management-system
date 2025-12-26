@@ -2,11 +2,11 @@
 
 # Product Requirements Document (PRD)
 
-## Project Camp Backend
+## Project management system Backend
 
 ### 1. Product Overview
 
-**Product Name:** Project Camp Backend  
+**Product Name:** Project management system Backend  
 **Version:** 1.0.0  
 **Product Type:** Backend API for Project Management System
 
