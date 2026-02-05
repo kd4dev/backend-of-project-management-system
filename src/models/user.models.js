@@ -40,6 +40,11 @@ const userSchema = new Schema(
       required: [true, "Password is required"],
       trim: true,
     },
+    role: {
+      type: String,
+      enum: ["admin", "manager", "member"],
+      default: "member",
+    },
     isEmailVerified: {
       type: Boolean,
       default: false,
@@ -81,6 +86,7 @@ userSchema.methods.generateAccessToken =  function () {
       _id: this._id, //ye toh mongo apne apne app bana deta he id
       email: this.email,
       username: this.username,
+      role: this.role,
     },
     process.env.ACCESS_TOKEN_SECRET,
     { expiresIn: process.env.ACCESS_TOKEN_EXPIRY },
@@ -104,8 +110,8 @@ userSchema.methods.generateTemporaryToken =  function () {
     .update(unhashedToken)
     .digest("hex");
 
-   const tokenExpiry = Date.now() + 20 * 60 * 1000; //20min--> ye line baad me error de skti he,de toh neeche wali commented line use kar lena
-  // const tokenExpiry = new Date(Date.now() + 20 * 60 * 1000);
+   // const tokenExpiry = Date.now() + 20 * 60 * 1000; //20min--> ye line baad me error de skti he,de toh neeche wali commented line use kar lena
+   const tokenExpiry = new Date(Date.now() + 20 * 60 * 1000);
 
   return { unhashedToken, hashedToken, tokenExpiry };
 };

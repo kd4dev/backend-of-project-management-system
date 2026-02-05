@@ -15,7 +15,7 @@ Project Camp Backend is a RESTful API service designed to support collaborative 
 ### 2. Target Users
 
 - **Project Administrators:** Create and manage projects, assign roles, oversee all project activities
-- **Project Admins:** Manage tasks and project content within assigned projects
+- **Managers:** Manage tasks and project content within assigned projects
 - **Team Members:** View projects, update task completion status, access project information
 
 ### 3. Core Features
@@ -27,7 +27,7 @@ Project Camp Backend is a RESTful API service designed to support collaborative 
 - **Password Management:** Change password, forgot/reset password functionality
 - **Email Verification:** Account verification via email tokens
 - **Token Management:** Access token refresh mechanism
-- **Role-Based Access Control:** Three-tier permission system (Admin, Project Admin, Member)
+- **Role-Based Access Control:** Three-tier permission system (Admin, Manager, Member)
 
 #### 3.2 Project Management
 
@@ -59,7 +59,7 @@ Project Camp Backend is a RESTful API service designed to support collaborative 
 
 - **Subtask Creation:** Add subtasks to existing tasks
 - **Subtask Updates:** Modify subtask details and completion status
-- **Subtask Deletion:** Remove subtasks (Admin/Project Admin only)
+- **Subtask Deletion:** Remove subtasks (Admin/Manager only)
 - **Member Completion:** Allow members to mark subtasks as complete
 
 #### 3.6 Project Notes
@@ -106,13 +106,13 @@ Project Camp Backend is a RESTful API service designed to support collaborative 
 **Task Routes** (`/api/v1/tasks/`)
 
 - `GET /:projectId` - List project tasks (secured, role-based)
-- `POST /:projectId` - Create task (secured, Admin/Project Admin)
+- `POST /:projectId` - Create task (secured, Admin/Manager)
 - `GET /:projectId/t/:taskId` - Get task details (secured, role-based)
-- `PUT /:projectId/t/:taskId` - Update task (secured, Admin/Project Admin)
-- `DELETE /:projectId/t/:taskId` - Delete task (secured, Admin/Project Admin)
-- `POST /:projectId/t/:taskId/subtasks` - Create subtask (secured, Admin/Project Admin)
-- `PUT /:projectId/st/:subTaskId` - Update subtask (secured, role-based)
-- `DELETE /:projectId/st/:subTaskId` - Delete subtask (secured, Admin/Project Admin)
+- `PUT /:projectId/t/:taskId` - Update task (secured, Admin/Manager)
+- `DELETE /:projectId/t/:taskId` - Delete task (secured, Admin/Manager)
+- `POST /:projectId/t/:taskId/subtasks` - Create subtask (secured, Admin/Manager)
+- `PUT /:projectId/t/:taskId/subtasks/:subTaskId` - Update subtask (secured, role-based)
+- `DELETE /:projectId/t/:taskId/subtasks/:subTaskId` - Delete subtask (secured, Admin/Manager)
 
 **Note Routes** (`/api/v1/notes/`)
 
@@ -128,7 +128,7 @@ Project Camp Backend is a RESTful API service designed to support collaborative 
 
 #### 4.2 Permission Matrix
 
-| Feature                    | Admin | Project Admin | Member |
+| Feature                    | Admin | Manager | Member |
 | -------------------------- | ----- | ------------- | ------ |
 | Create Project             | ✓     | ✗             | ✗      |
 | Update/Delete Project      | ✓     | ✗             | ✗      |
@@ -145,7 +145,7 @@ Project Camp Backend is a RESTful API service designed to support collaborative 
 **User Roles:**
 
 - `admin` - Full system access
-- `project_admin` - Project-level administrative access
+- `manager` - Project-level administrative access
 - `member` - Basic project member access
 
 **Task Status:**
@@ -180,3 +180,7 @@ Project Camp Backend is a RESTful API service designed to support collaborative 
 - File attachment capability for enhanced collaboration
 - Email notification system for user verification and password reset
 - Comprehensive API documentation through endpoint structure
+
+## Migration Notes
+
+- **Role rename:** Legacy `project_admin` roles are now `manager`. Run `npm run migrate-roles` (or `node migrate-roles.js`) if you have existing data.

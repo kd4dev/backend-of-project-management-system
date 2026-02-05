@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 20% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 20% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 20% 12%;
+
+    --primary: 200 85% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 94%;
+    --secondary-foreground: 222 20% 12%;
+
+    --muted: 210 16% 92%;
+    --muted-foreground: 216 12% 42%;
+
+    --accent: 198 30% 92%;
+    --accent-foreground: 222 20% 12%;
+
+    --destructive: 0 72% 54%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 16% 84%;
+    --input: 210 16% 84%;
+    --ring: 200 85% 45%;
+
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222 25% 8%;
+    --foreground: 0 0% 98%;
+ 
+    --card: 222 25% 12%;
+    --card-foreground: 0 0% 98%;
+ 
+    --popover: 222 25% 10%;
+    --popover-foreground: 0 0% 98%;
+ 
+    --primary: 200 90% 55%;
+    --primary-foreground: 222 25% 10%;
+ 
+    --secondary: 222 20% 18%;
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 222 20% 16%;
+    --muted-foreground: 215 14% 70%;
+ 
+    --accent: 210 22% 16%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 70% 40%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 222 20% 20%;
+    --input: 222 20% 20%;
+    --ring: 200 90% 55%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif;
+  }
+}
